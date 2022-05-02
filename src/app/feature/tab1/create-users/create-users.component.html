@@ -1,0 +1,67 @@
+<section [formGroup]="formGroupCreateUser" class="container container-create-user-form">
+  <div>
+    <ion-item class="container-create-user-form__item">
+      <ion-label position="floating">Name</ion-label>
+      <ion-input id="create-user-form-name" formControlName="name"></ion-input>
+    </ion-item>
+    <section *ngIf="formGroupCreateUser.get('name').touched || formGroupCreateUser.get('name').dirty">
+      <ion-text color="danger" *ngIf="formGroupCreateUser.get('name').hasError('required')">
+        <span id="create-user-form-hint-error-onlynumbers">Name is required</span>
+      </ion-text>
+    </section>
+  </div>
+  <div>
+    <ion-item class="container-create-user-form__item">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input #create_user_form_email id="create-user-form-email" formControlName="email" type="email"></ion-input>
+    </ion-item>
+    <section *ngIf="formGroupCreateUser.get('email').touched || formGroupCreateUser.get('email').dirty">
+      <ion-text color="danger" *ngIf="formGroupCreateUser.get('email').hasError('email')">
+        <span id="create-user-form-hint-error-onlynumbers">Type an correct email</span>
+      </ion-text>
+      <ion-text color="danger" *ngIf="formGroupCreateUser.get('email').hasError('required')">
+        <span id="create-user-form-hint-error-onlynumbers">Email is required</span>
+      </ion-text>
+    </section>
+  </div>
+  <div>
+    <ion-item class="container-create-user-form__item">
+      <ion-label position="floating">Job</ion-label>
+      <ion-input #create_user_form_email id="create-user-form-job" formControlName="job"></ion-input>
+    </ion-item>
+    <section *ngIf="formGroupCreateUser.get('job').touched || formGroupCreateUser.get('job').dirty">
+      <ion-text color="danger" *ngIf="formGroupCreateUser.get('job').hasError('required')">
+        <span id="create-user-form-hint-error-onlynumbers">Job is required</span>
+      </ion-text>
+    </section>
+  </div>
+  <div>
+    <ion-item class="container-create-user-form__item">
+      <ion-label position="floating">DNI</ion-label>
+      <ion-input id="create-user-form-dni" formControlName="dni"></ion-input>
+    </ion-item>
+    <section *ngIf="formGroupCreateUser.get('dni').touched || formGroupCreateUser.get('dni').dirty">
+      <div >
+        <ion-text color="danger" *ngIf="formGroupCreateUser.get('dni').hasError('required')">
+          <span id="create-user-form-hint-error-onlynumbers">* DNI is required</span>
+        </ion-text>
+      </div >
+      <div >
+        <ion-text color="danger" *ngIf="formGroupCreateUser.get('dni').hasError('pattern')">
+          <span id="create-user-form-dni-hint-error-pattern">* Only numbers is allowed</span>
+        </ion-text>
+      </div>
+      <div >
+        <ion-text color="danger" *ngIf="formGroupCreateUser.get('dni').hasError('maxlength')">
+          <span id="create-user-form-dni-hint-error-minLength">* Max 11 characteres</span>
+        </ion-text>
+      </div>
+      <div > 
+        <ion-text color="danger" *ngIf="formGroupCreateUser.get('dni').hasError('minlength')">
+          <span id="create-user-form-dni-hint-error-minLength">* Min 10 characteres</span>
+        </ion-text>
+      </div>
+    </section>
+  </div>
+  <ion-button id="create-user-form-button" [disabled]="!createUserIsValid" class="container-create-user-form__button" (click)="createUser()">Create user</ion-button>
+</section>

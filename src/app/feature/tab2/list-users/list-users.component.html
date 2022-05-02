@@ -1,0 +1,22 @@
+<ion-searchbar id="filter-user-by-name" [(ngModel)]="filter"></ion-searchbar>
+<section class="container container-list-users">
+  <ion-list id="container-list-users" *ngIf="(users | searchbyname: filter)?.length !== 0">
+    <ion-item *ngFor="let user of users | searchbyname: filter; let index = index">
+      <ion-thumbnail slot="start">
+        <ion-img id="item-user-avatar-{{index}}" class="container-list-users__img" [src]="user.avatar"></ion-img>
+      </ion-thumbnail>
+      <ion-label id="item-user-first-name-{{index}}">{{user.firstName + ' ' +user.lastName}}</ion-label>
+      <ion-ripple-effect ></ion-ripple-effect>
+    </ion-item>
+  </ion-list>
+  <ion-list id="conatiner-message-not-data-found" *ngIf="(users | searchbyname: filter)?.length === 0">
+    <ion-item>
+      Theres are not users with that filter
+    </ion-item>
+  </ion-list>
+  <ion-list id="conatiner-message-not-data-loaded" *ngIf="users?.length === 0">
+    <ion-item>
+      Theres are not users loaded
+    </ion-item>
+  </ion-list>
+</section>
